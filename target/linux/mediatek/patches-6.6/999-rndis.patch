@@ -1,0 +1,19 @@
+--- a/drivers/net/usb/rndis_host.c
++++ b/drivers/net/usb/rndis_host.c
+@@ -641,16 +641,6 @@
+ 	.tx_fixup =	rndis_tx_fixup,
+ };
+ 
+-static const struct driver_info asr_rndis_info = {
+-	.description =	"Asr RNDIS device",
+-	.flags =	FLAG_WWAN | FLAG_POINTTOPOINT | FLAG_FRAMING_RN | FLAG_NO_SETINT | FLAG_NOARP,
+-	.bind =		rndis_bind,
+-	.unbind =	rndis_unbind,
+-	.status =	rndis_status,
+-	.rx_fixup =	rndis_rx_fixup,
+-	.tx_fixup =	rndis_tx_fixup,
+-};
+-
+ /*-------------------------------------------------------------------------*/
+ 
+ static const struct usb_device_id	products [] = {

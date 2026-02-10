@@ -21,12 +21,6 @@ define Build/elecom-header
 	mv $@.new $@
 endef
 
-define Build/qding-header
-  $(STAGING_DIR_HOST)/bin/mkqdimg \
-    -B $(1) -f $@ -o $@.new
-  mv $@.new $@
-endef
-
 define Build/ravpower-wd009-factory
 	mkimage -A mips -T standalone -C none -a 0x80010000 -e 0x80010000 \
 		-n "OpenWrt Bootloader" -d $(UBOOT_PATH) $@.new
@@ -184,17 +178,6 @@ define Device/cudy_m1200-v1
 endef
 TARGET_DEVICES += cudy_m1200-v1
 
-define Device/cudy_re1200-outdoor-v1
-  IMAGE_SIZE := 7808k
-  DEVICE_VENDOR := Cudy
-  DEVICE_MODEL := RE1200 Outdoor
-  DEVICE_VARIANT := v1
-  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7663-firmware-ap
-  UIMAGE_NAME := R56
-  SUPPORTED_DEVICES += R56
-endef
-TARGET_DEVICES += cudy_re1200-outdoor-v1
-
 define Device/cudy_tr1200-v1
   IMAGE_SIZE := 15872k
   DEVICE_VENDOR := Cudy
@@ -252,6 +235,7 @@ define Device/elecom_wrc-1167fs
 	xor-image -p 29944A25 -x | elecom-header 00228000 | \
 	elecom-product-header WRC-1167FS
   DEVICE_PACKAGES := kmod-mt76x2
+  DEFAULT := n
 endef
 TARGET_DEVICES += elecom_wrc-1167fs
 
@@ -338,23 +322,14 @@ define Device/hiwifi_hc5861b
 endef
 TARGET_DEVICES += hiwifi_hc5861b
 
-define Device/hongdian_h7920-v40
-  IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := Hongdian
-  DEVICE_MODEL := H7920
-  DEVICE_VARIANT := v40
-  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi
+define Device/huasifei_shf283
+   IMAGE_SIZE := 16064k
+   DEVICE_VENDOR := Huasifei
+   DEVICE_MODEL := SHF283
+   DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci kmod-usb-net-cdc-mbim \
+	kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-serial-option uqmi
 endef
-TARGET_DEVICES += hongdian_h7920-v40
-
-define Device/hongdian_h8850-v20
-  IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := Hongdian
-  DEVICE_MODEL := H8850
-  DEVICE_VARIANT := v20
-  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi
-endef
-TARGET_DEVICES += hongdian_h8850-v20
+TARGET_DEVICES += huasifei_shf283
 
 define Device/iptime_a3
   IMAGE_SIZE := 7936k
@@ -559,16 +534,6 @@ define Device/oraybox_x1
 endef
 TARGET_DEVICES += oraybox_x1
 
-define Device/qding_qc202
-  IMAGE_SIZE := 7872k
-  DEVICE_VENDOR := Qding
-  DEVICE_MODEL := QC202
-  DEVICE_PACKAGES := kmod-i2c-mt7628 kmod-gpio-beeper kmod-input-matrix-keypad kmod-input-evdev uboot-envtools
-  IMAGES += factory.bin
-  IMAGE/factory.bin := $$(sysupgrade_bin) | qding-header qc202
-endef
-TARGET_DEVICES += qding_qc202
-
 define Device/rakwireless_rak633
   IMAGE_SIZE := 7872k
   DEVICE_VENDOR := Rakwireless
@@ -647,6 +612,7 @@ define Device/tplink_archer-c20-v5
   TPLINK_HWREVADD := 0x5
   DEVICE_PACKAGES := kmod-mt76x0e
   IMAGES := sysupgrade.bin
+  DEFAULT := n
 endef
 TARGET_DEVICES += tplink_archer-c20-v5
 
@@ -678,6 +644,7 @@ define Device/tplink_archer-c50-v4
   DEVICE_PACKAGES := kmod-mt76x2
   IMAGES := sysupgrade.bin
   SUPPORTED_DEVICES += tplink,c50-v4
+  DEFAULT := n
 endef
 TARGET_DEVICES += tplink_archer-c50-v4
 
@@ -691,6 +658,7 @@ define Device/tplink_archer-c50-v6
   TPLINK_HWREVADD := 0x6
   DEVICE_PACKAGES := kmod-mt7615e kmod-mt7663-firmware-ap
   IMAGES := sysupgrade.bin
+  DEFAULT := n
 endef
 TARGET_DEVICES += tplink_archer-c50-v6
 
@@ -993,6 +961,7 @@ define Device/tplink_tl-wr902ac-v4
 	kmod-usb-ledtrig-usbport
   IMAGES := sysupgrade.bin tftp-recovery.bin
   IMAGE/tftp-recovery.bin := pad-extra 128k | $$(IMAGE/factory.bin)
+  DEFAULT := n
 endef
 TARGET_DEVICES += tplink_tl-wr902ac-v4
 

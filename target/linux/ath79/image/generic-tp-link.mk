@@ -79,7 +79,7 @@ define Device/tplink_archer-c59-v1
   DEVICE_VARIANT := v1
   TPLINK_BOARD_ID := ARCHER-C59-V1
   DEVICE_PACKAGES := kmod-usb2 kmod-usb-ledtrig-usbport kmod-ath10k-ct \
-	ath10k-firmware-qca9888-ct ipq-wifi-tplink_archer-c59-v1
+	ath10k-firmware-qca9888-ct
   SUPPORTED_DEVICES += archer-c59-v1
 endef
 TARGET_DEVICES += tplink_archer-c59-v1
@@ -129,7 +129,7 @@ define Device/tplink_archer-c60-v1
   DEVICE_MODEL := Archer C60
   DEVICE_VARIANT := v1
   TPLINK_BOARD_ID := ARCHER-C60-V1
-  DEVICE_PACKAGES := kmod-ath10k-ct-smallbuffers ath10k-firmware-qca9888-ct ipq-wifi-tplink_archer-c60-v1
+  DEVICE_PACKAGES := kmod-ath10k-ct-smallbuffers ath10k-firmware-qca9888-ct
   SUPPORTED_DEVICES += archer-c60-v1
 endef
 TARGET_DEVICES += tplink_archer-c60-v1
@@ -141,7 +141,7 @@ define Device/tplink_archer-c60-v2
   DEVICE_MODEL := Archer C60
   DEVICE_VARIANT := v2
   TPLINK_BOARD_ID := ARCHER-C60-V2
-  DEVICE_PACKAGES := kmod-ath10k-ct-smallbuffers ath10k-firmware-qca9888-ct ipq-wifi-tplink_archer-c60-v2
+  DEVICE_PACKAGES := kmod-ath10k-ct-smallbuffers ath10k-firmware-qca9888-ct
   SUPPORTED_DEVICES += archer-c60-v2
 endef
 TARGET_DEVICES += tplink_archer-c60-v2
@@ -222,6 +222,7 @@ define Device/tplink_archer-d50-v1
   TPLINK_FLASHLAYOUT := 8Mqca
   KERNEL_INITRAMFS := kernel-bin | append-dtb | lzma | \
 	tplink-v2-header -s -V "ver. 1.0"
+  DEFAULT := n
 endef
 TARGET_DEVICES += tplink_archer-d50-v1
 
@@ -520,7 +521,7 @@ define Device/tplink_deco-s4-v2
   IMAGE_SIZE := 13824k
   DEVICE_MODEL := Deco S4
   DEVICE_VARIANT := v2
-  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca9888-ct uencrypt-mbedtls
+  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca9888-ct uencrypt-openssl
   SUPPORTED_DEVICES += deco-s4-v2
   TPLINK_BOARD_ID := DECO-S4-V2
 endef

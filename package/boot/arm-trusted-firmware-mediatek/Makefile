@@ -459,6 +459,7 @@ define Trusted-Firmware-A/mt7988-ram-comb
   BUILD_SUBTARGET:=filogic
   PLAT:=mt7988
   DRAM_USE_COMB:=1
+  DDR4_4BG_MODE:=1
   RAM_BOOT_UART_DL:=1
   HIDDEN:=
   DEFAULT:=TARGET_mediatek_filogic
@@ -470,6 +471,7 @@ define Trusted-Firmware-A/mt7988-nor-comb
   BUILD_SUBTARGET:=filogic
   PLAT:=mt7988
   DRAM_USE_COMB:=1
+  DDR4_4BG_MODE:=1
 endef
 
 define Trusted-Firmware-A/mt7988-emmc-comb
@@ -478,6 +480,7 @@ define Trusted-Firmware-A/mt7988-emmc-comb
   BUILD_SUBTARGET:=filogic
   PLAT:=mt7988
   DRAM_USE_COMB:=1
+  DDR4_4BG_MODE:=1
 endef
 
 define Trusted-Firmware-A/mt7988-sdmmc-comb
@@ -486,6 +489,7 @@ define Trusted-Firmware-A/mt7988-sdmmc-comb
   BUILD_SUBTARGET:=filogic
   PLAT:=mt7988
   DRAM_USE_COMB:=1
+  DDR4_4BG_MODE:=1
 endef
 
 define Trusted-Firmware-A/mt7988-snand-comb
@@ -494,6 +498,7 @@ define Trusted-Firmware-A/mt7988-snand-comb
   BUILD_SUBTARGET:=filogic
   PLAT:=mt7988
   DRAM_USE_COMB:=1
+  DDR4_4BG_MODE:=1
 endef
 
 define Trusted-Firmware-A/mt7988-snand-ubi-comb
@@ -502,6 +507,7 @@ define Trusted-Firmware-A/mt7988-snand-ubi-comb
   BUILD_SUBTARGET:=filogic
   PLAT:=mt7988
   DRAM_USE_COMB:=1
+  DDR4_4BG_MODE:=1
   USE_UBI:=1
 endef
 
@@ -511,6 +517,7 @@ define Trusted-Firmware-A/mt7988-spim-nand-comb
   BUILD_SUBTARGET:=filogic
   PLAT:=mt7988
   DRAM_USE_COMB:=1
+  DDR4_4BG_MODE:=1
 endef
 
 define Trusted-Firmware-A/mt7988-spim-nand-ubi-comb
@@ -519,6 +526,7 @@ define Trusted-Firmware-A/mt7988-spim-nand-ubi-comb
   BUILD_SUBTARGET:=filogic
   PLAT:=mt7988
   DRAM_USE_COMB:=1
+  DDR4_4BG_MODE:=1
   USE_UBI:=1
 endef
 
@@ -590,6 +598,7 @@ TFA_MAKE_FLAGS += \
 	HAVE_DRAM_OBJ_FILE=yes \
 	$(if $(DDR3_FLYBY),DDR3_FLYBY=1) \
 	$(if $(DRAM_USE_COMB),DRAM_USE_COMB=1) \
+	$(if $(DDR4_4BG_MODE),DDR4_4BG_MODE=1) \
 	$(if $(RAM_BOOT_UART_DL),RAM_BOOT_UART_DL=1) \
 	$(if $(USE_UBI),UBI=1 $(if $(findstring mt7622,$(PLAT)),OVERRIDE_UBI_START_ADDR=0x80000)) \
 	$(if $(USE_UBI),UBI=1 $(if $(findstring mt7981,$(PLAT)),OVERRIDE_UBI_START_ADDR=0x100000)) \
